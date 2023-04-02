@@ -49,7 +49,7 @@ export const App = () => {
     );
 
     return (
-        <div className="px-5">
+        <div className="px-2 sm:px-5">
             <div className="flex justify-center gap-5 my-5">
                 <h1 className="text-xl font-medium text-center m-auto">
                     {currentMonthName} - {currentYear}
@@ -79,10 +79,10 @@ export const App = () => {
                 </button>
             </div>
 
-            <ul className="text-center list-none w-full grid grid-cols-7 grid-rows-none gap-5">
+            <ul className="text-center list-none w-full grid grid-cols-7 grid-rows-none gap-2 sm:gap-5 lg:gap-10">
                 {DAYS?.map((item) => {
                     return (
-                        <li key={item} className="text-xl font-medium px-5">
+                        <li key={item} className="text-sm md:text-xl font-medium">
                             {item}
                         </li>
                     );
@@ -93,7 +93,7 @@ export const App = () => {
                     return (
                         <li className="flex justify-center items-center" key={month + date}>
                             <h5
-                                className={`w-10 h-10 flex justify-center items-center text-xl p-5 border-2 border-solid border-fuchsia-500 rounded-full ${
+                                className={`w-4 h-4 sm:w-10 sm:h-10 flex justify-center items-center text-sm sm:text-xl p-4 sm:p-5 border-2 border-solid border-fuchsia-500 rounded-full ${
                                         currentDate === currentMonthDate && month === currentMonthName
                                             ? "bg-fuchsia-300 text-white"
                                             : ""
