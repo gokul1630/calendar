@@ -14,7 +14,7 @@ export const App = () => {
 
     const currentMonthDate = dateObj.getDate();
 
-    const previousMonth = MONTHS[currentMonth === 0 ? 11 : currentMonth - 1];
+    const previousMonthName = MONTHS[currentMonth === 0 ? 11 : currentMonth - 1];
 
     const currentMonthName = MONTHS[currentMonth];
 
@@ -40,7 +40,7 @@ export const App = () => {
     currentMonthDates?.map(({ date }, idx) => {
         if (date < 1) {
             currentMonthDates[idx].date = previousMonthDates[previousMonthDates.length - (negativeNumberLength - idx)];
-            currentMonthDates[idx].month = previousMonth;
+            currentMonthDates[idx].month = previousMonthName;
         }
         return date;
     });
