@@ -1,5 +1,4 @@
 import { useState } from "react";
-import clsx from "clsx";
 
 const DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
@@ -94,12 +93,12 @@ export const App = () => {
                     return (
                         <li className="flex justify-center items-center" key={month + date}>
                             <h5
-                                className={clsx(
-                                    "w-10 h-10 flex justify-center items-center text-xl p-5 border-2 border-solid border-fuchsia-500 rounded-full",
-                                    currentDate === currentMonthDate && month === currentMonthName
-                                        ? "bg-fuchsia-300 text-white"
-                                        : ""
-                                )}>
+                                className={`w-10 h-10 flex justify-center items-center text-xl p-5 border-2 border-solid border-fuchsia-500 rounded-full ${
+                                        currentDate === currentMonthDate && month === currentMonthName
+                                            ? "bg-fuchsia-300 text-white"
+                                            : ""
+                                    }
+                                `}>
                                 {date && date}
                             </h5>
                         </li>
