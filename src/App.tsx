@@ -14,11 +14,11 @@ export const App = () => {
 
     const currentMonthDate = dateObj.getDate();
 
-    const previousMonth = MONTHS[currentMonth - 1];
+    const previousMonth = MONTHS[currentMonth === 0 ? 11 : currentMonth - 1];
 
     const currentMonthName = MONTHS[currentMonth];
 
-    const nextMonthName = MONTHS[currentMonth + 1];
+    const nextMonthName = MONTHS[currentMonth === 11 ? 0 : currentMonth + 1];
 
     const previousMonthLastDate = new Date(currentYear, currentMonth, 0).getDate();
 
