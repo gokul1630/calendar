@@ -61,7 +61,7 @@ export const App = ({ dates = [] }: DateType) => {
     });
 
     currentMonthDates.push(
-        ...generateDates(14 - (lastDayIndex + 1)).map((_, idx) => ({ month: nextMonthName, date: idx + 1 }))
+        ...generateDates(currentMonthDates.length === 28 ? 21 : 14 - (lastDayIndex + 1)).map((_, idx) => ({ month: nextMonthName, date: idx + 1 }))
     );
 
     const absentDates = dates.map((item) => ({
