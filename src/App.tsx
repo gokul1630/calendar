@@ -8,8 +8,20 @@ export type DateType = {
     dates?: Date[];
 };
 
+const generateDates = (date: number ): number[] => {
+    let dates = []
+
+    for (let i = 1; i <= date; i++){
+        dates.push(i)
+    }
+
+    return dates;
+}
+
+const getDateObj = (...args: number[]): Date => new Date(...args)
+
 export const App = ({ dates = [] }: DateType) => {
-    const [dateObj, setDateObj] = useState<Date>(new Date());
+    const [dateObj, setDateObj] = useState<Date>(getDateObj());
 
     const currentYear = dateObj.getFullYear();
 
@@ -23,17 +35,17 @@ export const App = ({ dates = [] }: DateType) => {
 
     const nextMonthName = MONTHS[currentMonth === 11 ? 0 : currentMonth + 1];
 
-    const previousMonthLastDate = new Date(currentYear, currentMonth, 0).getDate();
+    const previousMonthLastDate = getDateObj(currentYear, currentMonth, 0).getDate();
 
-    const previousMonthDates = [...Array(previousMonthLastDate)].map((_, i) => i + 1);
+    const previousMonthDates = generateDates(previousMonthLastDate)
 
-    const lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const lastDay = getDateObj(currentYear, currentMonth + 1, 0).getDate();
 
-    const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
+    const firstDayIndex = getDateObj(currentYear, currentMonth, 1).getDay();
 
-    const lastDayIndex = new Date(currentYear, currentMonth, lastDay).getDay();
+    const lastDayIndex = getDateObj(currentYear, currentMonth, lastDay).getDay();
 
-    const currentMonthDates = [...Array(lastDay + firstDayIndex)].map((_, idx) => ({
+    const currentMonthDates = generateDates(lastDay + firstDayIndex).map((_, idx) => ({
         month: currentMonthName,
         date: idx - (firstDayIndex - 1),
     }));
@@ -49,7 +61,7 @@ export const App = ({ dates = [] }: DateType) => {
     });
 
     currentMonthDates.push(
-        ...[...Array(14 - (lastDayIndex + 1))].map((_, idx) => ({ month: nextMonthName, date: idx + 1 }))
+        ...generateDates(14 - (lastDayIndex + 1)).map((_, idx) => ({ month: nextMonthName, date: idx + 1 }))
     );
 
     const absentDates = dates.map((item) => ({
@@ -58,10 +70,10 @@ export const App = ({ dates = [] }: DateType) => {
         selectedYear: item.getFullYear(),
     }));
 
-    const handleNextMonth = (type?: string) => () => {
-        let month: number = currentMonth;
-        let year: number = currentYear;
+    let month: number = currentMonth;
+    let year: number = currentYear;
 
+    const handleNextMonth = (type?: string) => () => {
         switch (type) {
             case "year":
                 year += 1;
@@ -69,13 +81,10 @@ export const App = ({ dates = [] }: DateType) => {
             default:
                 month += 1;
         }
-        setDateObj(new Date(year, month, currentMonthDate));
+        setDateObj(getDateObj(year, month, currentMonthDate));
     };
 
     const handlePreviousMonth = (type?: string) => () => {
-        let month: number = currentMonth;
-        let year: number = currentYear;
-
         switch (type) {
             case "year":
                 year -= 1;
@@ -83,7 +92,7 @@ export const App = ({ dates = [] }: DateType) => {
             default:
                 month -= 1;
         }
-        setDateObj(new Date(year, month, currentMonthDate));
+        setDateObj(getDateObj(year, month, currentMonthDate));
     };
 
     return (
@@ -139,7 +148,7 @@ export const App = ({ dates = [] }: DateType) => {
                                     )
                                         ? "bg-blue-500 text-white border-blue-600"
                                         : ""
-                                } 
+                                }
                                 `}>
                                 {date}
                             </h5>
