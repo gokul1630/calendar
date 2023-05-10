@@ -139,7 +139,7 @@ export const App = ({ dates = [] }: DateType) => {
                 {currentMonthDates.slice(0, 42).map(({ date, month }) => {
                     return (
                         <li className="flex justify-center items-center" key={month + date}>
-                            <h5
+                            <p
                                 className={`w-4 h-4 sm:w-10 sm:h-10 flex justify-center items-center text-sm font-medium sm:text-xl p-4 sm:p-5 border-2 border-solid border-blue-500 rounded-full ${
                                     currentMonthName !== month ? "border-blue-100 text-gray-300" : ""
                                 } ${
@@ -154,7 +154,7 @@ export const App = ({ dates = [] }: DateType) => {
                                 }
                                 `}>
                                 {date}
-                            </h5>
+                            </p>
                         </li>
                     );
                 })}
