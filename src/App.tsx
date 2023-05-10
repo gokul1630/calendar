@@ -18,7 +18,10 @@ const generateDates = (date: number ): number[] => {
     return dates;
 }
 
-const getDateObj = (...args: number[]): Date => new Date(...args)
+const getDateObj = (...args: number[]): Date => {
+    const arg = [...args] as []
+    return new Date(...arg);
+}
 
 export const App = ({ dates = [] }: DateType) => {
     const [dateObj, setDateObj] = useState<Date>(getDateObj());
